@@ -1,0 +1,22 @@
+.posts-screen {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.posts-title {
+  text-align: center;
+}
+
+.active-post-id {
+  text-align: center;
+}
+
+.list-of-posts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}

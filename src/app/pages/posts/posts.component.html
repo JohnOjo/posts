@@ -1,0 +1,13 @@
+<div class="posts-screen">
+  <h1 class="posts-title">Posts</h1>
+  <h2 class="active-post-id">Active Post ID: {{ activePost?.id }}</h2>
+  <div class="list-of-posts">
+    @for (post of posts; track post.id) {
+    <app-card
+      [post]="post"
+      [activePostClicksCount]="activePostClicksCount"
+      (click)="rotatePostProperties(post)"
+    ></app-card>
+    }
+  </div>
+</div>
