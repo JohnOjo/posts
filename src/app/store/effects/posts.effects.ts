@@ -7,7 +7,6 @@ import {
   loadPostsSuccess,
   loadPostsFailure,
 } from '../actions/posts.actions';
-import { Post } from '../../models/response-models/post';
 
 @Injectable()
 export class PostsEffects {
@@ -16,14 +15,12 @@ export class PostsEffects {
       ofType(loadPosts),
       mergeMap(() =>
         this.apiService.getPosts().pipe(
-          map((posts: Post[]) => loadPostsSuccess({ posts })),
+          map((posts) => loadPostsSuccess({ posts })),
           catchError((error) => of(loadPostsFailure({ error: error.message })))
         )
       )
     )
   );
 
-  constructor(private actions$: Actions, private apiService: ApiService) {
-    console.log('Actions$ in Effects:', this.actions$);
-  }
+  constructor(private actions$: Actions, private apiService: ApiService) {}
 }

@@ -3,8 +3,9 @@ import {
   loadPosts,
   loadPostsSuccess,
   loadPostsFailure,
+  setActivePost,
 } from '../actions/posts.actions';
-import { Post } from '../../models/response-models/post';
+import { Post } from '../models/post.model';
 
 export interface PostsState {
   posts: Post[];
@@ -30,5 +31,12 @@ export const postsReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(setActivePost, (state, { id }) => ({
+    ...state,
+    posts: state.posts.map((post) => ({
+      ...post,
+      active: post.id === id, // Set only the matching post to active
+    })),
   }))
 );

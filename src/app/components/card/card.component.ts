@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Post } from '../../models/response-models/post';
 
 @Component({
   selector: 'app-card',
+  standalone: true,
   imports: [NgClass],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
@@ -11,11 +12,5 @@ import { Post } from '../../models/response-models/post';
 export class CardComponent {
   @Input() post: Post = new Post();
   @Input() activePostClicksCount: number = 0;
-  @Output() postClickEvent = new EventEmitter<Post>();
   postProperties: string[] = ['title', 'userId', 'id', 'body'];
-
-  selectPost(post: Post) {
-    this.post.active = true;
-    this.postClickEvent.emit(post);
-  }
 }
