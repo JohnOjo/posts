@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, inject, OnInit } from '@angular/core';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { CardComponent } from '../../components/card/card.component';
 import { ApiService } from '../../services/api.service';
 import { Post } from '../../models/response-models/post';
+import { Store } from '@ngrx/store';
+import { loadPosts } from '../../store/actions/posts.actions';
+import {
+  selectError,
+  selectLoading,
+  selectPosts,
+} from '../../store/selectors/posts.selectors';
 
 @Component({
   selector: 'app-posts',
@@ -10,7 +17,12 @@ import { Post } from '../../models/response-models/post';
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
+  private store = inject(Store);
+
+  posts$: Observable<Post[]> = this.store.select(selectPosts);
+  loading$: Observable<boolean> = this.store.select(selectLoading);
+  error$: Observable<string | null> = this.store.select(selectError);
   destroy$ = new Subject<void>();
   loading: boolean = true;
   posts: Post[] = [];
@@ -18,8 +30,11 @@ export class PostsComponent {
   activePostClicksCount: number = 0;
 
   constructor(private apiService: ApiService) {
+    this.store.dispatch(loadPosts());
     this.getPosts();
   }
+
+  ngOnInit() {}
 
   getPosts(): void {
     this.apiService

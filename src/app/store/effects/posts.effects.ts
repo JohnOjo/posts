@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, mergeMap, of } from 'rxjs';
+import { ApiService } from '../../services/api.service';
+import {
+  loadPosts,
+  loadPostsSuccess,
+  loadPostsFailure,
+} from '../actions/posts.actions';
+import { Post } from '../../models/response-models/post';
+
+@Injectable()
+export class PostsEffects {
+  loadPosts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadPosts),
+      mergeMap(() =>
+        this.apiService.getPosts().pipe(
+          map((posts: Post[]) => loadPostsSuccess({ posts })),
+          catchError((error) => of(loadPostsFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+  constructor(private actions$: Actions, private apiService: ApiService) {
+    console.log('Actions$ in Effects:', this.actions$);
+  }
+}
