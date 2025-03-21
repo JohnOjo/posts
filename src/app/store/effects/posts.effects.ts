@@ -16,7 +16,9 @@ export class PostsEffects {
       mergeMap(() =>
         this.apiService.getPosts().pipe(
           map((posts) => loadPostsSuccess({ posts })),
-          catchError((error) => of(loadPostsFailure({ error: error.message })))
+          catchError((_) =>
+            of(loadPostsFailure({ error: 'Unable to get posts.' }))
+          )
         )
       )
     )
