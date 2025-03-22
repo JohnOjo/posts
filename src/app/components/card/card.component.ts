@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Post } from '../../models/response-models/post';
+import { Post } from '../../store/models/post.model';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +10,7 @@ import { Post } from '../../models/response-models/post';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() post: Post = new Post();
+  @Input() post?: Post;
   @Input() activePostClicksCount: number = 0;
   postProperties: ReadonlyArray<string> = ['title', 'userId', 'id', 'body'];
 }

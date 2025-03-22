@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardComponent } from '../../components/card/card.component';
-import { Post } from '../../models/response-models/post';
 import { Store } from '@ngrx/store';
 import { loadPosts, setActivePost } from '../../store/actions/posts.actions';
 import {
@@ -17,6 +16,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { Post } from '../../store/models/post.model';
 
 @Component({
   selector: 'app-posts',
@@ -44,7 +44,7 @@ import {
 })
 export class PostsComponent implements OnInit {
   private store = inject(Store);
-  posts$: Observable<any[]> = this.store.select(selectPosts);
+  posts$: Observable<Post[]> = this.store.select(selectPosts);
   loading$: Observable<boolean> = this.store.select(selectLoading);
   error$: Observable<string | null> = this.store.select(selectError);
   activePost: Post | null = null;
