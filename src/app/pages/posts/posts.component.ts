@@ -43,7 +43,7 @@ export class PostsComponent implements OnInit {
   error$: Observable<string | null> = this.store.select(selectError);
   activePost: Post | null = null;
   activePostClicksCount: number = 0;
-  bouncAnimationDelays: number[] = [1,2,3,4]
+  bouncAnimationDelays: ReadonlyArray<number> = [1, 2, 3, 4]
 
   ngOnInit() {
     this.store.dispatch(loadPosts());

@@ -12,5 +12,5 @@ import { Post } from '../../models/response-models/post';
 export class CardComponent {
   @Input() post: Post = new Post();
   @Input() activePostClicksCount: number = 0;
-  postProperties: string[] = ['title', 'userId', 'id', 'body'];
+  postProperties: ReadonlyArray<string> = ['title', 'userId', 'id', 'body'];
 }
