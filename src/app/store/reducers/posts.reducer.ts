@@ -36,7 +36,7 @@ export const postsReducer = createReducer(
     ...state,
     posts: state.posts.map((post) => ({
       ...post,
-      active: post.id === id, // Set only the matching post to active
+      active: post.id === id,
     })),
   }))
 );

@@ -4,7 +4,6 @@ import { PostsComponent } from './posts.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApiService } from '../../services/api.service';
-import { Store } from '@ngrx/store';
 import { Post } from '../../store/models/post.model';
 import {
   selectError,
@@ -13,6 +12,7 @@ import {
 } from '../../store/selectors/posts.selectors';
 import { loadPosts, setActivePost } from '../../store/actions/posts.actions';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 describe('PostsComponent', () => {
   let component: PostsComponent;
@@ -43,6 +43,7 @@ describe('PostsComponent', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         provideMockStore(),
+        provideAnimationsAsync(),
       ],
     }).compileComponents();
 

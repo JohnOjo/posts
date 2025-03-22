@@ -1,24 +1,25 @@
-<div class="post-card" [ngClass]="{'post-card-active' : post.active}">
-    @if (post.active) {
+<div class="card" [ngClass]="{'card-active' : post?.active}">
+    <div class="ribbon"><div class="ribbon-triangle"></div></div>
+    @if (post?.active) {
         @switch (postProperties[this.activePostClicksCount %  4]) {
             @case ('title') {
-                {{post.title}}
+                <div class="card-title">{{post?.title}}</div>
             }
             @case ('id') {
-                {{post.id}}
+                <div class="card-number">{{post?.id}}</div>
             }
             @case ('userId') {
-                {{post.userId}}
+                <div class="card-number">{{post?.userId}}</div>
             }
             @case ('body') {
-                {{post.body}}
+                "{{post?.body}}"
             }
             @default {
-                {{post.title}}
+                {{post?.title}}
             }
         }
     }
     @else {
-        {{post.title}}
+        <div class="card-title">{{post?.title}}</div>
     }
 </div>

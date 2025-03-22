@@ -1,21 +1,71 @@
+$card-background-color: #2a2a2a;
 
-.post-card {
-    text-align: center;
-    padding: 0.25rem;
-    width: 6rem;
-    height: 10rem;
-    border-radius: .375rem;
-    margin: .25rem 1.5rem .25rem .25rem;
-    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .52);
-    cursor: pointer;
-    transition: transform .2s;
+:host {
+  flex: 0 0 9%;
 }
 
-.post-card:hover {
-    color: red;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  width: 7rem;
+  height: 21rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.52);
+  cursor: pointer;
+  transition: transform 0.2s;
+  border-radius: 2%;
+  background-color: $card-background-color;
+  color: #fff;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  position: relative;
 }
 
-.post-card-active {
-    color: red;
-    transform: scale(1.1);
+.card-title {
+  font-size: 1.125rem;
+  text-transform: capitalize;
+}
+
+.card-number {
+  font-size: 2rem;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card:hover {
+  opacity: 1;
+}
+
+.card-active {
+  font-size: 1rem;
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.ribbon {
+  width: 1.25rem;
+  height: 1.875rem;
+  background-color: #e15b64;
+  display: flex;
+  align-items: end;
+  position: absolute;
+  top: 0rem;
+  left: 0.25rem;
+}
+
+.ribbon-triangle {
+  width: 0rem;
+  height: 0rem;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  border-bottom: 0.625rem solid $card-background-color;
 }

@@ -1,3 +1,5 @@
+$error-color: #ff3333;
+
 .posts-screen {
   display: flex;
   padding: 1rem;
@@ -5,12 +7,19 @@
   row-gap: 1rem;
 }
 
-.posts-title {
-  text-align: center;
+.header-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
-.active-post-id {
+.header {
   text-align: center;
+  text-transform: uppercase;
+  font-family: "Courier New", monospace;
 }
 
 .list-of-posts {
@@ -18,5 +27,38 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  column-gap: 1rem;
+  row-gap: 2rem;
+}
+
+.dot {
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-palette-1 {
+  background-color: #e15b64;
+}
+
+.dot-palette-2 {
+  background-color: #f47e60;
+}
+
+.dot-palette-3 {
+  background-color: #f8b26a;
+}
+
+.dot-palette-4 {
+  background-color: #abbd81;
+}
+
+.error {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  border: 1px solid $error-color;
+  color: $error-color;
 }
