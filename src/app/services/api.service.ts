@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -10,6 +10,9 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any> {
-    return this.http.get<any>(environment.baseURL + '/posts');
+    return this.http.get<any>(environment.baseURL + '/posts').pipe(retry({
+      count: 3,
+      delay: 1000
+    }),);
   }
 }
