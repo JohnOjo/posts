@@ -1,4 +1,4 @@
-<div class="post-card" [ngClass]="{'post-card-active' : post.active}" (click)="selectPost(post)">
+<div class="post-card" [ngClass]="{'post-card-active' : post.active}">
     @if (post.active) {
         @switch (postProperties[this.activePostClicksCount %  4]) {
             @case ('title') {
