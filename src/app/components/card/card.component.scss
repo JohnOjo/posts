@@ -1,14 +1,19 @@
+:host {
+  flex: 0 0 9%;
+}
+
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 0.5rem;
-  width: 6.5rem;
-  height: 25rem;
+  width: 7rem;
+  height: 21rem;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.52);
   cursor: pointer;
   transition: transform 0.2s;
-  border-radius: 4%;
-//   border-top-left-radius: 20%;
-//   border-bottom-right-radius: 20%;
+  border-radius: 2%;
   background-color: #2a2a2a;
   color: #fff;
   opacity: 0.8;
@@ -16,14 +21,14 @@
   transition: opacity 0.35s, transform 0.35s;
 }
 
-:host {
-  flex: 0 0 9%;
-}
-
 .card-title {
   font-size: 1.125rem;
   color: #fff;
   text-transform: capitalize;
+}
+
+.card-number {
+  font-size: 2rem;
 }
 
 .card-body {
@@ -38,4 +43,18 @@
   font-size: 1rem;
   transform: scale(1.1);
   opacity: 1;
+}
+
+.ribbon {
+  width: 20px;
+  height: 30px;
+  background-color: #e15b64;
+}
+
+.ribbon-triangle {
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
 }

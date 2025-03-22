@@ -1,4 +1,5 @@
 <div class="card" [ngClass]="{'card-active' : post.active}">
+    <div class="ribbon"><div class="ribbon-triangle"></div></div>
     <!-- <div class="card-title">{{postProperties[this.activePostClicksCount %  4]}}</div> -->
     <!-- <div class="card-body"> -->
         @if (post.active) {
@@ -7,10 +8,10 @@
                     <div class="card-title">{{post.title}}</div>
                 }
                 @case ('id') {
-                    {{post.id}}
+                    <div class="card-number">{{post.id}}</div>
                 }
                 @case ('userId') {
-                    {{post.userId}}
+                    <div class="card-number">{{post.userId}}</div>
                 }
                 @case ('body') {
                     "{{post.body}}"

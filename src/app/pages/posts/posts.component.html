@@ -1,6 +1,14 @@
 <div class="posts-screen">
-  <h1 class="posts-title">Posts</h1>
-  <h2 class="active-post-id">Active Post ID: {{ activePost?.id }}</h2>
+  <div class="header-block">
+    @for (bouncAnimationDelay of bouncAnimationDelays; track bouncAnimationDelay) {
+      <span [@bounce]="{value: 'something', params: { delay: bouncAnimationDelay+'s'}}" class="dot dot-palette-{{bouncAnimationDelay}}"></span>
+    }
+    <h1 class="header">Posts</h1>
+    @for (bouncAnimationDelay of bouncAnimationDelays; track bouncAnimationDelay) {
+      <span [@bounce]="{value: 'something', params: { delay: bouncAnimationDelay+'s'}}" class="dot dot-palette-{{bouncAnimationDelay}}"></span>
+    }
+  </div>
+  <h2 class="header">Active Post ID: {{ activePost?.id }}</h2>
   <div class="list-of-posts">
     @if (loading$ | async) {
       <h3>
