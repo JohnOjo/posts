@@ -13,8 +13,8 @@ Please open a terminal in the same folder as the repo and run the following comm
 
 ## Architecture choices
 
-1. I used the @if, @for and @switch declaritive control flow instead on *ngIf, *ngFor and \*ngSwitch as it is more efficient as angular compiles them statically, it makes use for block level rendering which reduces unnecessary DOM updates and elimates unnecessary change detection cycles.
-2. Additonally I used @for instead of \*ngFor as it is faster due to it using block memoization (function caching).
+1. I used the @if, @for and @switch declaritive control flow instead on *ngIf, *ngFor and *ngSwitch as it is more efficient as angular compiles them statically, it makes use for block level rendering which reduces unnecessary DOM updates and elimates unnecessary change detection cycles.
+2. Additonally I used @for instead of *ngFor as it is faster due to it using block memoization (function caching).
 3. I used "track" in the @for loops in the HTML template improve performance and avoid unnecessary re-renders.
 4. I went with standalone components over modules, to simplify code as it is more portable, reusable and improves the separation of concers.
 5. I used ReadonlyArray to create immutable arrays to prevent accidental changes to data.
