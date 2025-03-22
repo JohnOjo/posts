@@ -1,3 +1,5 @@
+$error-color: #ff3333;
+
 .posts-screen {
   display: flex;
   padding: 1rem;
@@ -51,4 +53,12 @@
 
 .dot-palette-4 {
   background-color: #abbd81;
+}
+
+.error {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  border: 1px solid $error-color;
+  color: $error-color;
 }

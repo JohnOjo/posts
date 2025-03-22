@@ -17,7 +17,7 @@ export class PostsEffects {
         this.apiService.getPosts().pipe(
           map((posts) => loadPostsSuccess({ posts })),
           catchError((_) =>
-            of(loadPostsFailure({ error: 'Unable to get posts.' }))
+            of(loadPostsFailure({ error: 'Error: Unable to get posts.' }))
           )
         )
       )
