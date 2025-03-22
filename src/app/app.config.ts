@@ -29,6 +29,6 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
       connectInZone: true,
     }),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
 };

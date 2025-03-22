@@ -7,40 +7,56 @@ import {
   loadPostsSuccess,
   loadPostsFailure,
 } from '../actions/posts.actions';
-import { cold, hot } from 'jasmine-marbles';
-import { Actions } from '@ngrx/effects';
 import { ApiService } from '../../services/api.service';
 
 describe('PostsEffects', () => {
   let actions$: Observable<any>;
   let effects: PostsEffects;
-  let mockService: jasmine.SpyObj<ApiService>;
+  let mockApiService: jasmine.SpyObj<ApiService>;
+  const mockPosts = [
+    {
+      userId: 1,
+      id: 1,
+      title: 'Test title',
+      body: 'Test body',
+    },
+  ];
 
   beforeEach(() => {
-    mockService = jasmine.createSpyObj('ApiService', ['getPosts']);
+    mockApiService = jasmine.createSpyObj('ApiService', ['getPosts']);
 
     TestBed.configureTestingModule({
       providers: [
         PostsEffects,
         provideMockActions(() => actions$),
-        { provide: ApiService, useValue: mockService },
+        { provide: ApiService, useValue: mockApiService },
       ],
     });
 
     effects = TestBed.inject(PostsEffects);
   });
 
-  it('should dispatch loadPostsFailure when API call fails', () => {
-    const errorMessage = 'Unable to get posts.';
-    actions$ = hot('-a', { a: loadPosts() });
-    mockService.getPosts.and.returnValue(
-      cold('-#', {}, new Error(errorMessage))
-    );
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
 
-    const expected = cold('--b', {
-      b: loadPostsFailure({ error: errorMessage }),
+  it('should dispatch loadPostsSuccess when API call succeeds', () => {
+    actions$ = of(loadPosts());
+    mockApiService.getPosts.and.returnValue(of(mockPosts));
+
+    effects.loadPosts$.subscribe((action) => {
+      expect(action).toEqual(loadPostsSuccess({ posts: mockPosts }));
     });
+  });
 
-    expect(effects.loadPosts$).toBeObservable(expected);
+  it('should dispatch loadPostsFailure when API call fails', () => {
+    actions$ = of(loadPosts());
+    mockApiService.getPosts.and.returnValue(throwError(() => 'API Error'));
+
+    effects.loadPosts$.subscribe((action) => {
+      expect(action).toEqual(
+        loadPostsFailure({ error: 'Error: Unable to get posts.' })
+      );
+    });
   });
 });

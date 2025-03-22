@@ -10,7 +10,13 @@ import {
   selectPosts,
 } from '../../store/selectors/posts.selectors';
 import { CommonModule } from '@angular/common';
-import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  keyframes,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-posts',
@@ -43,7 +49,7 @@ export class PostsComponent implements OnInit {
   error$: Observable<string | null> = this.store.select(selectError);
   activePost: Post | null = null;
   activePostClicksCount: number = 0;
-  bounceAnimationDelays: ReadonlyArray<number> = [1, 2, 3, 4]
+  bounceAnimationDelays: ReadonlyArray<number> = [1, 2, 3, 4];
 
   ngOnInit() {
     this.store.dispatch(loadPosts());
