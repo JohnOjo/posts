@@ -5,11 +5,13 @@ App is hosted and accessible through this link: `https://johnojo.github.io/posts
 
 ## How to run project locally
 
-Prerequisites: Please install NodeJS (`https://nodejs.org/en/download`) and Angular CLI (please open a terminal and run: npm i @angular/cli)
+Prerequisites: Please install NodeJS (`https://nodejs.org/en/download`), Angular CLI (please open a terminal and run: npm i @angular/cli) and Git (`https://git-scm.com/downloads`)
 Please open a terminal in the same folder as the repo and run the following commands:
 
-1. npm i (only run this after cloning the repo or when a new library is added or updated)
-2. ng serve (alternatively run: npm run start)
+1. git clone [repository_url]
+2. cd [project_directory]
+3. npm i (only run this after cloning the repo or when a new library is added or updated)
+4. ng serve (alternatively run: npm run start)
    Once the server is running, open your browser and navigate to `http://localhost:4200/` (if the port is taken then enter the url provided in terminal into a browser). The application will automatically reload whenever you modify any of the source files.
 
 ## Architecture choices
@@ -21,7 +23,7 @@ Please open a terminal in the same folder as the repo and run the following comm
 5. I used ReadonlyArray to create immutable arrays to prevent accidental changes to data.
 6. I used providedIn: 'root' with the @Injectable() to avoid duplicate services being created.
 7. I used retry() on the api call to add robostness to the application in case of network faliures or other errors.
-8. Setup CI/CD pipeline to run unit tests and deploy app to prevent bugs
+8. Setup CI/CD pipeline to run unit tests and deploy app to prevent bugs (in /.github/workflows folder)
 
 ## How to build project locally
 
@@ -51,3 +53,7 @@ For end-to-end (e2e) testing, run:
 ```bash
 ng e2e
 ```
+
+## Troubleshooting/Issues
+"Module not found" error: Run npm install to install missing dependencies.
+"Port 4200 already in use" error: Change the port using ng serve --port [port_number].
