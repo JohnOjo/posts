@@ -25,7 +25,7 @@ jobs:
         name: Create GitHub deployment
         id: deployment
         with:
-          token: "${{ github.token }}"
+          token: "${{ secrets.ACCESS_TOKEN }}"
           target_url: https://JohnOjo.github.io/posts
           environment: production
 
@@ -57,26 +57,7 @@ jobs:
           npm run build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: "build"
-
-      - name: Update deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: "${{ github.token }}"
-          target_url: https://JohnOjo.github.io/posts
-          state: "success"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-
-      - name: Update deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: "${{ github.token }}"
-          target_url: https://JohnOjo.github.io/posts
-          state: "failure"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          npm run ng -- deploy --repo="https://github.com/JohnOjo/posts.git" --base-href=/posts/ --name=JohnOjo --email=u15096794@tuks.co.za
