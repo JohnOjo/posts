@@ -55,5 +55,5 @@ ng e2e
 ```
 
 ## Troubleshooting/Issues
-"Module not found" error: Run npm install to install missing dependencies.
-"Port 4200 already in use" error: Change the port using ng serve --port [port_number].
+1. "Module not found" error: Run npm install to install missing dependencies.
+2. "Port 4200 already in use" error: Change the port using ng serve --port [port_number].
