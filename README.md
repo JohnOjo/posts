@@ -21,7 +21,7 @@ Please open a terminal in the same folder as the repo and run the following comm
 5. I used ReadonlyArray to create immutable arrays to prevent accidental changes to data.
 6. I used providedIn: 'root' with the @Injectable() to avoid duplicate services being created.
 7. I used retry() on the api call to add robostness to the application in case of network faliures or other errors.
-8. Setup CI/CD pipeline to run unit tests when pull request it created to pick up bugs
+8. Setup CI/CD pipeline to run unit tests and deploy app to prevent bugs
 
 ## How to build project locally
 
