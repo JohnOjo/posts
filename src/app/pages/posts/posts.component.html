@@ -18,22 +18,23 @@
         Loading ...
       </h3>
     }
+    @else {
+      @for (post of posts$ | async; track post.id) {
+        <app-card
+          [post]="post"
+          [activePostClicksCount]="activePostClicksCount"
+          (click)="rotatePostProperties(post)"
+        ></app-card>
+      }
+      @empty {
+        <h3>There are currently no posts available.</h3>
+      }
 
-    @for (post of posts$ | async; track post.id) {
-      <app-card
-        [post]="post"
-        [activePostClicksCount]="activePostClicksCount"
-        (click)="rotatePostProperties(post)"
-      ></app-card>
-    }
-    @empty {
-      <h3>There are currently no posts available.</h3>
-    }
-
-    @if (error$ | async; as error) {
-      <h3 class="error">
-        {{ error }}
-      </h3>
+      @if (error$ | async; as error) {
+        <h3 class="error">
+          {{ error }}
+        </h3>
+      }
     }
   </div>
 </div>

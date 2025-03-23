@@ -22,7 +22,7 @@ jobs:
         name: Create GitHub deployment
         id: deployment
         with:
-          token: "${{ github.token }}"
+          token: "${{ secrets.ACCESS_TOKEN }}"
           target_url: https://JohnOjo.github.io/posts
           environment: production
 
