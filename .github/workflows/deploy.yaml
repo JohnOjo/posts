@@ -1,9 +1,9 @@
 name: Deploy
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - "**"
 
 jobs:
   deploy:
@@ -57,11 +57,10 @@ jobs:
           npm run build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: "./dist/posts/browser"
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          npm run ng -- deploy --repo="https://github.com/JohnOjo/posts.git" --base-href=/posts/ --name=JohnOjo --email=u15096794@tuks.co.za
 
       - name: Update deployment status (success)
         if: success()
