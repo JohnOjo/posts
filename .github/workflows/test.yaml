@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  deploy:
+    name: Deploy my app
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.14.0]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: "./package-lock.json"
+
+      - name: Install
+        run: |
+          npm install
+
+      - name: Install Chrome Deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates fonts-liberation libappindicator3-1 libatk-bridge2.0-0 \
+            libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 \
+            libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 \
+            libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
+            lsb-release wget xdg-utils
+
+      - name: Test
+        run: CHROME_BIN=$(which chrome) npm run test
