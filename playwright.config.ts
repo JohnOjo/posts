@@ -27,7 +27,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'ng serve',
-    url: 'http://localhost:4200',
+    url: process.env['PLAYWRIGHT_TEST_URL'] || 'http://localhost:4200',
     reuseExistingServer: !process.env['CI'],
   },
 });

@@ -41,3 +41,5 @@ jobs:
 
       - name: Run Playwright tests
         run: npm run e2e
+        env:
+          PLAYWRIGHT_TEST_URL: "http://127.0.0.1:4200"
