@@ -56,8 +56,7 @@ jobs:
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          npm run ng -- deploy --repo="https://github.com/JohnOjo/posts.git"  --base-href=/posts/ --name="$GITHUB_ACTOR" --email="$GITHUB_PUSHER_EMAIL"
-        env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_PUSHER_EMAIL: ${{ github.event.pusher.email }}
+        run: |
+          npm run ng -- deploy --repo="https://github.com/JohnOjo/posts.git" --base-href=/posts/ --name="$GITHUB_ACTOR" --email="$GITHUB_PUSHER_EMAIL"
