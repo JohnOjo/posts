@@ -61,7 +61,7 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: "./dist/posts"
+          FOLDER: "./dist/posts/browser"
 
       - name: Update deployment status (success)
         if: success()
