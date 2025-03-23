@@ -32,3 +32,12 @@ jobs:
 
       - name: Test
         run: CHROME_BIN=$(which chrome) npm run test
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start static web server
+        run: npx http-server dist/your-app-name -p 4200 &
+
+      - name: Run Playwright tests
+        run: npm run e2e
