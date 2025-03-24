@@ -32,8 +32,8 @@ $error-color: #ff3333;
 }
 
 .dot {
-  height: 50px;
-  width: 50px;
+  height: 3.125rem;
+  width: 3.125rem;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -59,6 +59,6 @@ $error-color: #ff3333;
   width: fit-content;
   height: fit-content;
   padding: 0.5rem;
-  border: 1px solid $error-color;
+  border: 0.0625rem solid $error-color;
   color: $error-color;
 }
